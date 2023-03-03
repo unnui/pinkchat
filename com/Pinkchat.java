@@ -2,7 +2,7 @@ package com;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
-import java.awt.Image.*;
+//import java.awt.Image.*;
 import java.io.*;
 import java.net.*;
 import java.time.*;
@@ -42,7 +42,7 @@ public class Pinkchat extends JFrame implements ActionListener {
 		}
 		setLocation(300,300);
 		
-		Image icon = Toolkit.getDefaultToolkit().getImage("assets/icon.png");
+		Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("assets/icon.png"));
 		setIconImage(icon);
 		
 		Barra = new JMenuBar();
@@ -108,12 +108,12 @@ public class Pinkchat extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Bienvenido a Pinkchat!\nVersion 1.0-SNAPSHOT /---/ @Autor: Nui");
+		System.out.println("Bienvenido a Pinkchat!\nVersion 1.1-SNAPSHOT /---/ @Autor: Nui");
 		pinkchat = new Pinkchat();
 		
 		while (!false){
 			
-			while (ChatLog.getLineCount() > 15){
+			while (ChatLog.getLineCount() > 13){
 				try {
 				int end = ChatLog.getLineEndOffset(0);
 				ChatLog.replaceRange("", 0, end);  } catch (Exception error) {}
@@ -150,7 +150,7 @@ public void actionPerformed(ActionEvent e) {
 		
 		ChatLog.append("\n" + LocalDateTime.now().getHour() + ":" + LocalDateTime.now().getMinute() + " [You] " + message);
 		
-		while (ChatLog.getLineCount() > 15){
+		while (ChatLog.getLineCount() > 13){
 				try {
 				int end = ChatLog.getLineEndOffset(0);
 				ChatLog.replaceRange("", 0, end);  } catch (Exception error) {}}
@@ -198,17 +198,17 @@ public void actionPerformed(ActionEvent e) {
 public class WinCanvas extends Canvas{
 	public void paint(Graphics g)
 	{
-		Image i=Toolkit.getDefaultToolkit().getImage("assets/plush_sit1_mini.png");
+		Image i=Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("assets/plush_sit1_mini.png"));
 		g.drawImage(i,-10,250,canv);
 	}
 }
 
 public class HelpWin extends JFrame {
 	public HelpWin(){
-	setTitle("Te amo");
+	setTitle("Pinkchat!");
 	JPanel bg = new JPanel();
 	bg.setBackground(new Color(0.976f,0.82f,0.80f));
-	JLabel d = new JLabel("Pinkchat Snapshot 1.0 - gf version");
+	JLabel d = new JLabel("Pinkchat Snapshot 1.1");
 	add(d);
 	punto = pinkchat.getLocation();
 	setLocation(punto.x+200,punto.y+200);
